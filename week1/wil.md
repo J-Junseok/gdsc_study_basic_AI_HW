@@ -4,26 +4,14 @@ week1 HW
 
 정준석
 
--------------------------------
-
-퀴즈
-
-정답1 : 3
-
-정답2 : 단일 퍼셉트론은 두 개의 클래스를 하나의 직선으로(선형적으로) 분류합니다. 출력이 0인 클래스 (0,0), (1,1)과 출력이 1인 클래스 (0,1),(1,0)을 하나의 직선으로 분류할 수 없기 때문입니다.
-
-정답3 : ans1 = (0)
-        ans2 = (1)
-
--------------------------------
-
-설문
-
-X
-
-(배경지식 X)
-
--------------------------------
-
-실습
-
+test test test test test test test test test test test test test 
+test test test test test test test test test test test test test test test v
+test test test test test test test test test test test test test test test 
+test test test test test test test test test test test test test 
+test test test test test test test test test test test test test test test test test test 
+test test test test test test test test test test test test test vv
+test test test test test test test test test test test test test test test v
+test test test test test test test test test test test test test test test v
+test test test test test test test test test test 
+test test test test test test test test test test test test test test test 
+test test test test test test test test test test test test test
