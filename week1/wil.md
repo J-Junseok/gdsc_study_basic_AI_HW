@@ -1,3 +1,5 @@
+---
+
 # gdsc study basic AI
 
 week1
@@ -18,7 +20,7 @@ week1
 
 
 
----
+
 
 
 
