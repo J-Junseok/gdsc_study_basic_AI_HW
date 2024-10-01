@@ -8,12 +8,116 @@ week3
 
 ___
 
-## Weekly I Learned (wil)
+# Weekly I Learned (wil)
+
+## week3 wil
+
+### 기본적인 이미지 분류 접근 방식
+
+- Raw-pixel
+
+    픽셀 값을 직접 비교하여 판단 (무식한 방법)
+
+    1. 모든 이미지를 같은 크기로 조정 ex) 32*32
+
+    2. 각 이미지를 1차원 벡터로 펼침 ex) 32*32=1024차원
+
+    3. 새 이미지와 기존 이미지의 벡터 간 거리 계산
+
+    4. 가장 거리가 가까운 이미지의 클래스로 새 이미지 분류
+
+
+- 벡터 간 거리 계산 방법
+
+    - Manhattan Distance ; L1 = |x2-x1| + |y2-y1|
+
+    - Euclidean Distance ; L2 = root( (x2-x1)^2 + (y2-y2)^2 )
+
+    ![거리 계산 방법 2가지](image-3.png)
+
+
+
+### 이미지 분류의 Challenge한 점
+
+- Boxed ; 이미지의 일부가 가려져 있는 경우
+
+- Shifted ; 이미지가 평행이동 되어 있는 경우 / 상하좌우로 늘려져 있는 경우
+
+- Tinted ; 색조가 입혀져 있는 경우
+
+- 시점 차이 ; 앞에서 바라보았는지, 옆에서 바라보았는지
+
+- 조명 변화 ; 밝고 어두움
+
+- 한 카테고리 내의 동물이더라도 다른 포즈 ; 뛰어 다니는지, 가만히 있는지
+
+다양한 변수가 너무 많음 -> Robust Classifier를 만들어야 함 -> CNN
+
+
+
+### CNN
+
+- FNN ; Fully-connected multi layered Neural Network
+
+    공간 정보를 싹 무시하고 이미지를 한 줄로 쫘라락하여 이미지에 대한 정보 손실 발생
+
+![CNN 과정](image-4.png)
+
+1. Convolution Layer
+    
+    A Convolution Layer = Convolution + Activation
+
+    input image에 filter를 적용하여 feature map을 얻는다
+    
+    > 예를 들어, `28*28` image에 10개의 `5*5` kernel filter를 각각 적용하여 `24*24` feature map(convolution output)을 10개 얻는다.
+
+    Non-Linear Activation function을 사용해야 한다.
+
+        선형 변환을 여러번 적용하여도 하나의 선형 변환으로 축소된다.
+
+        f( W1*x + b1 ) =  W2(W1*x + b1) + b2 = Wx + b
+
+        ex) Sigmoid, Hyperbolic Tangent, ReLU, etc...
+
+
+2. Pooling Layer
+
+    feature map(convolution output)의 크기를 줄이는 역할
+
+    > 예를 들어, 10개의 `24*24` feature map(convolution output)에 각각 `2*2` pooling을 적용하면 10개의 `12*12` feature map(pooling output)이 만들어진다.
+
+    - Max Pooling
+
+    - Average Pooling
+
+
+3. Convolution Layer, Pooling Layer 반복
+
+4. Fully Connected Layer
+
+
+### 궁금한 점
+
+![강의록 4p](image-1.png)
+
+> "레이블된 이미지로 초기모델 훈련 후,
+레이블되지 않은 이미지로 모델 개선
+(비지도학습)"
+
+준지도학습 아닌가요?? labeled data와 unlabeled data를 함께 쓰니까 준지도학습인 거 같아서 헷갈리네요
+
+
+![강의록 39p](image-2.png)
+두번째 Convolution Layer에서 `5*5*10`짜리 filter가 총 20개 필요한 이유를 잘 모르겠어요. 20채널로 할지 30채널로 할지는 우리가 정하기 나름인 건가요?
+
+
+___
+
 
 
 ## week1 wil
 
-## Quiz
+### Quiz
 
 1. 정답1 : 3
 
@@ -159,109 +263,5 @@ y = ∑(wx) + b
 - 인공지능 분야에서 쓰이는 수학들
 
     선형대수학, 확률및통계, 미적분학, 이산수학, etc...
-
-
-
-
-## week3 wil
-
-### 기본적인 이미지 분류 접근 방식
-
-- Raw-pixel
-
-    픽셀 값을 직접 비교하여 판단 (무식한 방법)
-
-    1. 모든 이미지를 같은 크기로 조정 ex) 32*32
-
-    2. 각 이미지를 1차원 벡터로 펼침 ex) 32*32=1024차원
-
-    3. 새 이미지와 기존 이미지의 벡터 간 거리 계산
-
-    4. 가장 거리가 가까운 이미지의 클래스로 새 이미지 분류
-
-
-- 벡터 간 거리 계산 방법
-
-    - Manhattan Distance ; L1 = |x2-x1| + |y2-y1|
-
-    - Euclidean Distance ; L2 = root( (x2-x1)^2 + (y2-y2)^2 )
-
-    ![거리 계산 방법 2가지](image-3.png)
-
-
-
-### 이미지 분류의 Challenge한 점
-
-- Boxed ; 이미지의 일부가 가려져 있는 경우
-
-- Shifted ; 이미지가 평행이동 되어 있는 경우 / 상하좌우로 늘려져 있는 경우
-
-- Tinted ; 색조가 입혀져 있는 경우
-
-- 시점 차이 ; 앞에서 바라보았는지, 옆에서 바라보았는지
-
-- 조명 변화 ; 밝고 어두움
-
-- 한 카테고리 내의 동물이더라도 다른 포즈 ; 뛰어 다니는지, 가만히 있는지
-
-다양한 변수가 너무 많음 -> Robust Classifier를 만들어야 함 -> CNN
-
-
-
-### CNN
-
-- FNN ; Fully-connected multi layered Neural Network
-
-    공간 정보를 싹 무시하고 이미지를 한 줄로 쫘라락하여 이미지에 대한 정보 손실 발생
-
-![CNN 과정](image-4.png)
-
-1. Convolution Layer
-    
-    A Convolution Layer = Convolution + Activation
-
-    input image에 filter를 적용하여 feature map을 얻는다
-    
-    > 예를 들어, `28*28` image에 10개의 `5*5` kernel filter를 각각 적용하여 `24*24` feature map(convolution output)을 10개 얻는다.
-
-    Non-Linear Activation function을 사용해야 한다.
-
-        선형 변환을 여러번 적용하여도 하나의 선형 변환으로 축소된다.
-
-        f( W1*x + b1 ) =  W2(W1*x + b1) + b2 = Wx + b
-
-        ex) Sigmoid, Hyperbolic Tangent, ReLU, etc...
-
-
-2. Pooling Layer
-
-    feature map(convolution output)의 크기를 줄이는 역할
-
-    > 예를 들어, 10개의 `24*24` feature map(convolution output)에 각각 `2*2` pooling을 적용하면 10개의 `12*12` feature map(pooling output)이 만들어진다.
-
-    - Max Pooling
-
-    - Average Pooling
-
-
-3. Convolution Layer, Pooling Layer 반복
-
-4. Fully Connected Layer
-
-
-### 궁금한 점
-
-![강의록 4p](image-1.png)
-
-> "레이블된 이미지로 초기모델 훈련 후,
-레이블되지 않은 이미지로 모델 개선
-(비지도학습)"
-
-준지도학습 아닌가요?? labeled data와 unlabeled data를 함께 쓰니까 준지도학습인 거 같아서 헷갈리네요
-
-
-![강의록 39p](image-2.png)
-두번째 Convolution Layer에서 `5*5*10`짜리 filter가 총 20개 필요한 이유를 잘 모르겠어요. 20채널로 할지 30채널로 할지는 우리가 정하기 나름인 건가요?
-
 
 ___
