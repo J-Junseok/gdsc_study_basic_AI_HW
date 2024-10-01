@@ -10,6 +10,9 @@ ___
 
 ## Weekly I Learned (wil)
 
+
+## week1 wil
+
 ## Quiz
 
 1. 정답1 : 3
@@ -22,10 +25,6 @@ ___
 3. 정답3 : ans1 = (0) , ans2 = (1)
 
 
-
-## Weekly I Learned (wil)
-
-## week1 wil
 
 ### Component of DL
 
